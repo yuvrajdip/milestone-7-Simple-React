@@ -2,6 +2,7 @@ import React from "react";
 import Todo from "./Todo";
 import UseStateCounter from "./UseStateCounter";
 import Team from "./Team";
+import Friends from "./Friends";
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
       ></Todo>
       <UseStateCounter></UseStateCounter>
       <Team></Team>
+
+      <Friends></Friends>
     </>
   )
 }
