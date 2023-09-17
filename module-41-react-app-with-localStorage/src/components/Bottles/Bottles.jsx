@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Bottle from "../Bottle/Bottle";
 import './Bottles.css';
+import { addToLS, getStoredCart } from "../../localStorage";
 
 const Bottles = () => {
 
   const [bottles, setBottles] = useState([]);
   // console.log(bottles);
-  const [cart, setCart] =useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetch('../../../public/bottles.json')
@@ -15,10 +16,24 @@ const Bottles = () => {
       .then(data => setBottles(data))
   }, [])
 
+  
+  //* load Cart from localStorage
+  useEffect(() => {
+    console.log(`Called the useEffect from Bottles, ${bottles.length}`);
+    
+    //* Load the getBottles from localStorage and load it only when bottles length previously stored  
+    if (bottles.length > 0) {
+      const storedCart = getStoredCart();
+      console.log(storedCart);
+    }
+  }, []);
+
   const handleAddToCart = (bottle) => {
-    console.log(`bottle going to be added`,bottle);
+    console.log(`bottle going to be added`, bottle);
     const newCart = [...cart, bottle];
     setCart(newCart);
+
+    addToLS(bottle.id);
   }
 
   return (
