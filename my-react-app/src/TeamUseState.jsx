@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Team = () => {
+const TeamUseState = () => {
   
   const teamStyle = {
     border: '2px solid purple',
@@ -29,4 +29,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default TeamUseState;

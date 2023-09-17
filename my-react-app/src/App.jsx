@@ -1,8 +1,9 @@
 import React from "react";
 import Todo from "./Todo";
 import UseStateCounter from "./UseStateCounter";
-import Team from "./Team";
 import Friends from "./Friends";
+import UseRefHookPractice from "./useRefHookPractice";
+import TeamUseState from "./TeamUseState";
 
 export default function App() {
   return (
@@ -22,9 +23,12 @@ export default function App() {
         task='React Docs Porbo' isDone={false}
       ></Todo>
       <UseStateCounter></UseStateCounter>
-      <Team></Team>
+      
+      <TeamUseState></TeamUseState>
 
       <Friends></Friends>
+
+      <UseRefHookPractice></UseRefHookPractice>
     </>
   )
 }
