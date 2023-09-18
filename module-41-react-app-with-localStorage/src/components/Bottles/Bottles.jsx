@@ -3,6 +3,7 @@ import { useState } from "react";
 import Bottle from "../Bottle/Bottle";
 import './Bottles.css';
 import { addToLS, getStoredCart } from "../../localStorage";
+import Cart from "../Cart/Cart";
 
 const Bottles = () => {
 
@@ -17,29 +18,46 @@ const Bottles = () => {
   }, [])
 
   
-  //* load Cart from localStorage
+  //* load saved Cart items from localStorage
   useEffect(() => {
     console.log(`Called the useEffect from Bottles, ${bottles.length}`);
     
-    //* Load the getBottles from localStorage and load it only when bottles length previously stored  
+    //* Load the Bottles from localStorage and load it only when bottles length previously stored  
+    //* load saved bottles from localStorage 
     if (bottles.length > 0) {
       const storedCart = getStoredCart();
-      console.log(storedCart);
+      // console.log(storedCart);
+
+      const willBeDisplayedBottles = []
+      for(const id of storedCart){
+        const bottle = bottles.find( bottle => id === bottle.id )
+        if(bottle){
+          willBeDisplayedBottles.push(bottle)
+        }
+      }
+
+      console.log(`will be displayed bottles from localStorage`,willBeDisplayedBottles);
+      
+      setCart(willBeDisplayedBottles);  //* setting cart after fetching data from localStorage
+      
     }
-  }, []);
+  }, [bottles]);
+
 
   const handleAddToCart = (bottle) => {
     console.log(`bottle going to be added`, bottle);
     const newCart = [...cart, bottle];
     setCart(newCart);
 
+    //* storing bottles with id in LocalStorage
     addToLS(bottle.id);
   }
+
 
   return (
     <div>
       <h2>Bottles Available : {bottles.length}</h2>
-      <h3>Cart Length : {cart.length}</h3>
+      <Cart cart={cart}></Cart>
 
       <div className="bottles-container">
         {

@@ -1,7 +1,7 @@
-import './Bottle.css'
+import './Bottle.css';
 
 const Bottle = ({bottle, handleAddToCart }) => {
-  // console.log(bottle);
+  
   const {name , img, price } = bottle;
 
   return (
