@@ -6,15 +6,16 @@ const Cart = ({ cart, handleRemoveBottle }) => {
   return (
     <>
       <h3>Cart length : {cart.length}</h3>
-
+      <h3>Your Selected Bottles : </h3>
       <div className='singleBottle'>
         {
           cart.map((singleBottle) =>
-            <div key={singleBottle.id}>
-              <img src={singleBottle.img} alt="" />
+            <div key={singleBottle.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <div>
-                <button onClick={() => handleRemoveBottle(singleBottle.id)}>Remove</button>
-              </div>            
+                <img src={singleBottle.img} alt="" />
+              </div>
+
+              <button style={{marginRight:'17%'}} onClick={() => handleRemoveBottle(singleBottle.id)}>Remove</button>
             </div>
           )
         }

@@ -17,15 +17,14 @@ const Bottles = () => {
       .then(data => setBottles(data))
   }, [])
 
-  
+
   //* load saved Cart items from localStorage
   useEffect(() => {
-    console.log(`Called the useEffect from Bottles, ${bottles.length}`);
+    // console.log(`Called the useEffect from Bottles, ${bottles.length}`);
     
     //* Load the Bottles from localStorage and load it only when bottles length previously stored  
-    //* load saved bottles from localStorage 
     if (bottles.length > 0) {
-      const storedCart = getStoredCart();
+      const storedCart = getStoredCart(); //* load saved bottles from localStorage 
       // console.log(storedCart);
 
       const willBeDisplayedBottles = []
@@ -55,6 +54,9 @@ const Bottles = () => {
 
   const handleRemoveBottle = (id) => {
     console.log(`remove bottle clicked ${id}`);
+
+    const remainingCart = cart.filter( bottle => bottle.id !== id )
+    setCart(remainingCart);
     removeFromLS(id);
   }
 
